@@ -1,5 +1,5 @@
-import 'package:mapp_arch/core/constants/constants.dart';
-import 'package:mapp_arch/features/pokemon/business/entities/sub_entites.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../business/entities/sub_entites.dart';
 
 //! Sprites
 class SpritesModel extends SpritesEntity {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mapp_arch/core/constants/constants.dart';
-import 'package:mapp_arch/core/errors/failure.dart';
-import 'package:mapp_arch/features/pokemon/business/entities/pokemon_entity.dart';
-import 'package:mapp_arch/features/pokemon/presentation/providers/pokemon_provider.dart';
 import 'package:provider/provider.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../business/entities/pokemon_entity.dart';
+import '../providers/pokemon_provider.dart';
 
 class DataWidget extends StatelessWidget {
   const DataWidget({Key? key}) : super(key: key);

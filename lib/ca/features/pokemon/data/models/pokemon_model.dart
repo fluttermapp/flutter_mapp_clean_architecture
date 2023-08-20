@@ -1,6 +1,6 @@
-import 'package:mapp_arch/core/constants/constants.dart';
-import 'package:mapp_arch/features/pokemon/business/entities/pokemon_entity.dart';
-import 'package:mapp_arch/features/pokemon/data/models/sub_models.dart';
+import 'sub_models.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../business/entities/pokemon_entity.dart';
 
 class PokemonModel extends PokemonEntity {
   const PokemonModel({

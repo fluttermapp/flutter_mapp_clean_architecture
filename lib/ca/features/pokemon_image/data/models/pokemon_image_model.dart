@@ -1,5 +1,5 @@
-import 'package:mapp_arch/core/constants/constants.dart';
-import 'package:mapp_arch/features/pokemon_image/business/entities/pokemon_image_entity.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../business/entities/pokemon_image_entity.dart';
 
 class PokemonImageModel extends PokemonImageEntity {
   const PokemonImageModel({

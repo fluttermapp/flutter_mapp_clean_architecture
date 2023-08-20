@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mapp_clean_architecture/core/template/presentation/pages/template_page.dart';
+import '../core/template/presentation/pages/template_page.dart';
 
 List<Widget> pages = const [
   TemplatePage(),

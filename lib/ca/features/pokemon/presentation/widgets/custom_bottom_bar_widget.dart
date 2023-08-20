@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mapp_arch/features/pokemon/presentation/providers/selected_page_provider.dart';
-
 import 'package:provider/provider.dart';
-
+import '../providers/selected_page_provider.dart';
 import 'custom_bottom_bar_icon_widget.dart';
 
 class CustomBottomBarWidget extends StatelessWidget {

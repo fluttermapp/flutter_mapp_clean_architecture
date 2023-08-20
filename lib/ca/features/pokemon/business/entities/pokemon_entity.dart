@@ -1,4 +1,4 @@
-import 'package:mapp_arch/features/pokemon/business/entities/sub_entites.dart';
+import 'sub_entites.dart';
 
 class PokemonEntity {
   final String name;

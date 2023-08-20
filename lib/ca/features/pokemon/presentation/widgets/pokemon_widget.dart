@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mapp_arch/core/errors/failure.dart';
-import 'package:mapp_arch/features/pokemon/business/entities/pokemon_entity.dart';
-import 'package:mapp_arch/features/pokemon/presentation/providers/pokemon_provider.dart';
-import 'package:mapp_arch/features/pokemon_image/presentation/widgets/pokemon_image_widgets.dart';
 import 'package:provider/provider.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../pokemon_image/presentation/widgets/pokemon_image_widget.dart';
+import '../../business/entities/pokemon_entity.dart';
+import '../providers/pokemon_provider.dart';
 
 class PokemonWidget extends StatelessWidget {
   const PokemonWidget({Key? key}) : super(key: key);

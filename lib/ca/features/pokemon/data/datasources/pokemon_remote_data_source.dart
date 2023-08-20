@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:mapp_arch/core/errors/exceptions.dart';
-import 'package:mapp_arch/core/usecases/usecase.dart';
-import 'package:mapp_arch/features/pokemon/data/models/pokemon_model.dart';
+
+import '../../../../../core/errors/exceptions.dart';
+import '../../../../../core/usecases/usecase.dart';
+import '../models/pokemon_model.dart';
 
 abstract class PokemonRemoteDataSource {
   Future<PokemonModel> getPokemon({required PokemonParams params});

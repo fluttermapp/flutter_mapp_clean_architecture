@@ -1,8 +1,8 @@
 import 'dart:convert';
-
-import 'package:mapp_arch/core/errors/exceptions.dart';
-import 'package:mapp_arch/features/pokemon/data/models/pokemon_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../core/errors/exceptions.dart';
+import '../models/pokemon_model.dart';
 
 
 abstract class PokemonLocalDataSource {

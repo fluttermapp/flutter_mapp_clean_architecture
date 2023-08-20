@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:mapp_arch/core/connection/network_info.dart';
-import 'package:mapp_arch/core/errors/exceptions.dart';
-import 'package:mapp_arch/core/errors/failure.dart';
-import 'package:mapp_arch/core/usecases/usecase.dart';
-import 'package:mapp_arch/features/pokemon/business/repositories/pokemon_repository.dart';
-import 'package:mapp_arch/features/pokemon/data/datasources/pokemon_local_data_source.dart';
-import 'package:mapp_arch/features/pokemon/data/datasources/pokemon_remote_data_source.dart';
-import 'package:mapp_arch/features/pokemon/data/models/pokemon_model.dart';
+
+import '../../../../../core/connection/network_info.dart';
+import '../../../../../core/errors/exceptions.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../../core/usecases/usecase.dart';
+import '../../business/repositories/pokemon_repository.dart';
+import '../datasources/pokemon_local_data_source.dart';
+import '../datasources/pokemon_remote_data_source.dart';
+import '../models/pokemon_model.dart';
 
 class PokemonRepositoryImpl implements PokemonRepository {
   final PokemonRemoteDataSource remoteDataSource;

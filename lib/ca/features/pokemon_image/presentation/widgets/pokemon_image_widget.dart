@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:mapp_arch/core/errors/failure.dart';
-import 'package:mapp_arch/features/pokemon_image/business/entities/pokemon_image_entity.dart';
-import 'package:mapp_arch/features/pokemon_image/presentation/providers/pokemon_image_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../core/errors/failure.dart';
+import '../../business/entities/pokemon_image_entity.dart';
+import '../providers/pokemon_image_provider.dart';
 
 class PokemonImageWidget extends StatelessWidget {
   const PokemonImageWidget({

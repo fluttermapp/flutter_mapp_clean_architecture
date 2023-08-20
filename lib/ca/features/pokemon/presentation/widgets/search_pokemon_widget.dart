@@ -1,14 +1,15 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mapp_arch/core/connection/network_info.dart';
-import 'package:mapp_arch/core/constants/constants.dart';
-import 'package:mapp_arch/features/pokemon/presentation/providers/pokemon_provider.dart';
-import 'package:mapp_arch/features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
-import 'package:mapp_arch/features/pokemon/presentation/widgets/pokemon_widgets.dart';
-import 'package:mapp_arch/features/pokemon_image/presentation/providers/pokemon_image_provider.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
+
+import '../../../../../core/connection/network_info.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../pokemon_image/presentation/providers/pokemon_image_provider.dart';
+import '../providers/pokemon_provider.dart';
+import '../providers/selected_pokemon_item_provider.dart';
+import 'custom_elevated_button_widget.dart';
 
 class SearchPokemonWidget extends StatelessWidget {
   const SearchPokemonWidget({Key? key}) : super(key: key);

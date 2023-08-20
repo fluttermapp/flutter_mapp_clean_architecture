@@ -1,12 +1,12 @@
 import 'dart:convert';
-
-import 'package:mapp_arch/core/errors/exceptions.dart';
-import 'package:mapp_arch/features/pokemon_image/data/models/pokemon_image_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../core/errors/exceptions.dart';
+import '../models/pokemon_image_model.dart';
 
 abstract class PokemonImageLocalDataSource {
   Future<void>? cachePokemonImage(PokemonImageModel? pokemonImageToCache);
-  Future<PokemonImageModel>? getLastPokemonImage();
+  Future<PokemonImageModel> getLastPokemonImage();
 }
 
 const cachedPokemonImage = 'CACHED_POKEMON_IMAGE';
@@ -17,7 +17,7 @@ class PokemonImageLocalDataSourceImpl implements PokemonImageLocalDataSource {
   PokemonImageLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
-  Future<PokemonImageModel>? getLastPokemonImage() {
+  Future<PokemonImageModel> getLastPokemonImage() {
     final jsonString = sharedPreferences.getString(cachedPokemonImage);
 
     if (jsonString != null) {

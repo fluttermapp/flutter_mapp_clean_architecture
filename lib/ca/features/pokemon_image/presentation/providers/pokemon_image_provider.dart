@@ -3,17 +3,18 @@ import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
-import 'package:mapp_arch/core/connection/network_info.dart';
-import 'package:mapp_arch/core/constants/constants.dart';
-import 'package:mapp_arch/core/errors/failure.dart';
-import 'package:mapp_arch/core/usecases/usecase.dart';
-import 'package:mapp_arch/features/pokemon/business/entities/pokemon_entity.dart';
-import 'package:mapp_arch/features/pokemon_image/business/entities/pokemon_image_entity.dart';
-import 'package:mapp_arch/features/pokemon_image/business/usecases/get_pokemon_image.dart';
-import 'package:mapp_arch/features/pokemon_image/data/datasources/pokemon_image_local_data_source.dart';
-import 'package:mapp_arch/features/pokemon_image/data/datasources/pokemon_image_remote_data_source.dart';
-import 'package:mapp_arch/features/pokemon_image/data/repositories/pokemon_image_repository_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../core/connection/network_info.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../../core/usecases/usecase.dart';
+import '../../../pokemon/business/entities/pokemon_entity.dart';
+import '../../business/entities/pokemon_image_entity.dart';
+import '../../business/usecases/get_pokemon_image.dart';
+import '../../data/datasources/pokemon_image_local_data_source.dart';
+import '../../data/datasources/pokemon_image_remote_data_source.dart';
+import '../../data/repositories/pokemon_image_repository_impl.dart';
 
 class PokemonImageProvider extends ChangeNotifier {
   PokemonImageEntity? pokemonImage;
@@ -47,7 +48,7 @@ class PokemonImageProvider extends ChangeNotifier {
       ),
     );
 
-    failureOrPokemonImage?.fold(
+    failureOrPokemonImage.fold(
       (newFailure) {
         pokemonImage = null;
         failure = newFailure;
