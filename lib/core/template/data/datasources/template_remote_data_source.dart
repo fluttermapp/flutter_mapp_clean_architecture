@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import '../../../errors/exceptions.dart';
-import '../../../usecases/usecase.dart';
+import '../../../params/params.dart';
 import '../models/template_model.dart';
 
 abstract class TemplateRemoteDataSource {

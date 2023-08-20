@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../connection/network_info.dart';
 import '../../../errors/exceptions.dart';
 import '../../../errors/failure.dart';
-import '../../../usecases/usecase.dart';
+import '../../../params/params.dart';
 import '../../business/repositories/template_repository.dart';
 import '../datasources/template_local_data_source.dart';
 import '../datasources/template_remote_data_source.dart';
@@ -11,9 +11,7 @@ import '../models/template_model.dart';
 
 class TemplateRepositoryImpl implements TemplateRepository {
   final TemplateRemoteDataSource remoteDataSource;
-
   final TemplateLocalDataSource localDataSource;
-
   final NetworkInfo networkInfo;
 
   TemplateRepositoryImpl({

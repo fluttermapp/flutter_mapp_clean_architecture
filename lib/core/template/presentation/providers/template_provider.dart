@@ -10,7 +10,7 @@ import '../../../../core/template/business/usecases/get_template.dart';
 import '../../../../core/template/data/datasources/template_local_data_source.dart';
 import '../../../../core/template/data/datasources/template_remote_data_source.dart';
 import '../../../../core/template/data/repositories/template_repository_impl.dart';
-import '../../../../core/usecases/usecase.dart';
+import '../../../params/params.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TemplateProvider extends ChangeNotifier {
