@@ -1,6 +1,6 @@
 Presentation: UI & UX
     - Pages
-    - Riverpods (State management)
+    - Provider (State management)
     - Widgets
 
 Business: Security, caches, logs, exeptions, validations
