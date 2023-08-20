@@ -1,0 +1,121 @@
+import 'package:flutter/material.dart';
+import 'package:mapp_arch/core/constants/constants.dart';
+import 'package:mapp_arch/core/errors/failure.dart';
+import 'package:mapp_arch/features/pokemon/business/entities/pokemon_entity.dart';
+import 'package:mapp_arch/features/pokemon/presentation/providers/pokemon_provider.dart';
+import 'package:provider/provider.dart';
+
+class DataWidget extends StatelessWidget {
+  const DataWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    PokemonEntity? pokemon = Provider.of<PokemonProvider>(context).pokemon;
+    Failure? failure = Provider.of<PokemonProvider>(context).failure;
+    late Widget widget;
+    if (pokemon != null) {
+      widget = SingleChildScrollView(
+        child: Column(
+          children: [
+            ListTile(
+              leading: const Text('API'),
+              title: Text('https://pokeapi.co/api/v2/pokemon/${pokemon.id}'),
+              tileColor: Colors.orange,
+            ),
+            ListTile(
+              title: Text(kName),
+              subtitle: Text(pokemon.name),
+            ),
+            const Divider(),
+            ListTile(
+              title: Text(kId),
+              subtitle: Text(pokemon.id.toString()),
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Text('{ }'),
+              title: Text(kSprites),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: const Text('{ }'),
+                    title: Text(kOther),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: const Text('{ }'),
+                          title: Text(kOfficialArtwork),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                title: Text(kFrontDefault),
+                                subtitle: Text(pokemon.sprites.other
+                                    .officialArtwork.frontDefault),
+                              ),
+                              ListTile(
+                                title: Text(kFrontShiny),
+                                subtitle: Text(pokemon
+                                    .sprites.other.officialArtwork.frontShiny),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Text('[ ]'),
+              title: Text(kTypes),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Column(
+                children: List.generate(
+                  pokemon.types.length,
+                  (index) => Column(
+                    children: [
+                      ListTile(
+                        leading: const Text('{ }'),
+                        title: Text(kType),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: ListTile(
+                          title: Text(kName),
+                          subtitle:
+                              Text(pokemon.types.elementAt(index).type.name),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else if (failure != null) {
+      widget = Center(
+        child: Text(failure.errorMessage),
+      );
+    } else {
+      widget = const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return widget;
+  }
+}
