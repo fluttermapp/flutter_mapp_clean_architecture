@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon/presentation/pages/data_page.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon/presentation/pages/pokemon_page.dart';
 import 'package:provider/provider.dart';
 import 'widgets/custom_bottom_bar_widget.dart';
 import 'providers/selected_page_provider.dart';
 
 List<Widget> pages = const [
-  SizedBox(),
-  SizedBox(),
+  PokemonPage(),
+  DataPage(),
 ];
 
 class Skeleton extends StatelessWidget {

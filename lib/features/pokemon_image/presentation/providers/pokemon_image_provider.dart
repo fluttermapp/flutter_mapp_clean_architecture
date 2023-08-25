@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/connection/network_info.dart';
+import '../../../pokemon/business/entities/pokemon_entity.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../core/params/params.dart';
-import '../../../pokemon/business/entities/pokemon_entity.dart';
 import '../../business/entities/pokemon_image_entity.dart';
 import '../../business/usecases/get_pokemon_image.dart';
 import '../../data/datasources/pokemon_image_local_data_source.dart';
