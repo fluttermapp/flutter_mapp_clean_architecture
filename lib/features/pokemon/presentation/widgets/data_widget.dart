@@ -58,13 +58,11 @@ class DataWidget extends StatelessWidget {
                             children: [
                               ListTile(
                                 title: Text(kFrontDefault),
-                                subtitle: Text(pokemon.sprites.other
-                                    .officialArtwork.frontDefault),
+                                subtitle: SelectableText(pokemon.sprites.other.officialArtwork.frontDefault),
                               ),
                               ListTile(
                                 title: Text(kFrontShiny),
-                                subtitle: Text(pokemon
-                                    .sprites.other.officialArtwork.frontShiny),
+                                subtitle: SelectableText(pokemon.sprites.other.officialArtwork.frontShiny),
                               ),
                             ],
                           ),
@@ -95,8 +93,7 @@ class DataWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 10.0),
                         child: ListTile(
                           title: Text(kName),
-                          subtitle:
-                              Text(pokemon.types.elementAt(index).type.name),
+                          subtitle: Text(pokemon.types.elementAt(index).type.name),
                         ),
                       ),
                     ],
