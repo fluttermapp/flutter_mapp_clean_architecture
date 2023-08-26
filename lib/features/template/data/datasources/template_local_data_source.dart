@@ -5,7 +5,7 @@ import '../../../../../core/errors/exceptions.dart';
 import '../models/template_model.dart';
 
 abstract class TemplateLocalDataSource {
-  Future<void> cacheTemplate(TemplateModel? templateToCache);
+  Future<void> cacheTemplate({required TemplateModel? templateToCache});
   Future<TemplateModel> getLastTemplate();
 }
 
@@ -21,14 +21,14 @@ class TemplateLocalDataSourceImpl implements TemplateLocalDataSource {
     final jsonString = sharedPreferences.getString(cachedTemplate);
 
     if (jsonString != null) {
-      return Future.value(TemplateModel.fromJson(json.decode(jsonString)));
+      return Future.value(TemplateModel.fromJson(json: json.decode(jsonString)));
     } else {
       throw CacheException();
     }
   }
 
   @override
-  Future<void> cacheTemplate(TemplateModel? templateToCache) async {
+  Future<void> cacheTemplate({required TemplateModel? templateToCache}) async {
     if (templateToCache != null) {
       sharedPreferences.setString(
         cachedTemplate,

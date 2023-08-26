@@ -22,13 +22,13 @@ class TemplateRepositoryImpl implements TemplateRepository {
 
   @override
   Future<Either<Failure, TemplateModel>> getTemplate(
-      {required NoParams params}) async {
+      {required TemplateParams templateParams}) async {
     if (await networkInfo.isConnected!) {
       try {
         TemplateModel remoteActivity =
-            await remoteDataSource.getTemplate(params: params);
+            await remoteDataSource.getTemplate(templateParams: templateParams);
 
-        localDataSource.cacheTemplate(remoteActivity);
+        localDataSource.cacheTemplate(templateToCache: remoteActivity);
 
         return Right(remoteActivity);
       } on ServerException {

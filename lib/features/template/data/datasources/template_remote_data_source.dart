@@ -4,7 +4,7 @@ import '../../../../../core/params/params.dart';
 import '../models/template_model.dart';
 
 abstract class TemplateRemoteDataSource {
-  Future<TemplateModel> getTemplate({required NoParams params});
+  Future<TemplateModel> getTemplate({required TemplateParams templateParams});
 }
 
 class TemplateRemoteDataSourceImpl implements TemplateRemoteDataSource {
@@ -13,7 +13,7 @@ class TemplateRemoteDataSourceImpl implements TemplateRemoteDataSource {
   TemplateRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<TemplateModel> getTemplate({required NoParams params}) async {
+  Future<TemplateModel> getTemplate({required TemplateParams templateParams}) async {
     final response = await dio.get(
       'https://pokeapi.co/api/v2/pokemon/',
       queryParameters: {
@@ -22,7 +22,7 @@ class TemplateRemoteDataSourceImpl implements TemplateRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      return TemplateModel.fromJson(response.data);
+      return TemplateModel.fromJson(json: response.data);
     } else {
       throw ServerException();
     }

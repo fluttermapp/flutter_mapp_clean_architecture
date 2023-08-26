@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mapp_clean_architecture/features/pokemon/presentation/providers/pokemon_provider.dart';
-import 'package:flutter_mapp_clean_architecture/features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
 import 'package:provider/provider.dart';
+import 'features/pokemon/presentation/providers/pokemon_provider.dart';
+import 'features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
 import 'features/skeleton/providers/selected_page_provider.dart';
 import 'features/skeleton/skeleton.dart';
 

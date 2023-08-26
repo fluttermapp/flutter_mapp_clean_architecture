@@ -36,8 +36,8 @@ class TemplateProvider extends ChangeNotifier {
       ),
     );
 
-    final failureOrActivity = await GetTemplate(repository).call(
-      params: NoParams(),
+    final failureOrActivity = await GetTemplate(templateRepository: repository).call(
+      templateParams: TemplateParams(),
     );
 
     failureOrActivity.fold(

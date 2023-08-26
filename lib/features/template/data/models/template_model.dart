@@ -8,7 +8,7 @@ class TemplateModel extends TemplateEntity {
           template: template,
         );
 
-  factory TemplateModel.fromJson(Map<String, dynamic> json) {
+  factory TemplateModel.fromJson({required Map<String, dynamic> json}) {
     return TemplateModel(
       template: json[kTemplate],
     );

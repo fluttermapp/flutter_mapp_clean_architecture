@@ -9,8 +9,5 @@ String kOther = 'other';
 String kOfficialArtwork = 'official-artwork';
 String kFrontDefault = 'front_default';
 String kFrontShiny = 'front_shiny';
-String kPath = 'kPath';
 
 int maxPokemonId = 1008;
-
-bool isShiny = true;

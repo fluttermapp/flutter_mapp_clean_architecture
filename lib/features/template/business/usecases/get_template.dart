@@ -6,13 +6,13 @@ import '../entities/template_entity.dart';
 import '../repositories/template_repository.dart';
 
 class GetTemplate {
-  final TemplateRepository repository;
+  final TemplateRepository templateRepository;
 
-  GetTemplate(this.repository);
+  GetTemplate({required this.templateRepository});
 
   Future<Either<Failure, TemplateEntity>> call({
-    required NoParams params,
+    required TemplateParams templateParams,
   }) async {
-    return await repository.getTemplate(params: params);
+    return await templateRepository.getTemplate(templateParams: templateParams);
   }
 }
