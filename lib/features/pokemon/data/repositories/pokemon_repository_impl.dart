@@ -27,19 +27,19 @@ class PokemonRepositoryImpl implements PokemonRepository {
       {required PokemonParams params}) async {
     if (await networkInfo.isConnected!) {
       try {
-        final remoteActivity =
+        final remotePokemon =
             await remoteDataSource.getPokemon(params: params);
 
-        localDataSource.cachePokemon(remoteActivity);
+        localDataSource.cachePokemon(remotePokemon);
 
-        return Right(remoteActivity);
+        return Right(remotePokemon);
       } on ServerException {
         return Left(ServerFailure(errorMessage: 'This is a server exception'));
       }
     } else {
       try {
-        final localActivity = await localDataSource.getLastPokemon();
-        return Right(localActivity);
+        final localPokemon = await localDataSource.getLastPokemon();
+        return Right(localPokemon);
       } on CacheException {
         return Left(CacheFailure(errorMessage: 'No local data found'));
       }

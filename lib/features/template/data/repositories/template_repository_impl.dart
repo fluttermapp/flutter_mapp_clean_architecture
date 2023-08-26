@@ -25,19 +25,19 @@ class TemplateRepositoryImpl implements TemplateRepository {
       {required TemplateParams templateParams}) async {
     if (await networkInfo.isConnected!) {
       try {
-        TemplateModel remoteActivity =
+        TemplateModel remoteTemplate =
             await remoteDataSource.getTemplate(templateParams: templateParams);
 
-        localDataSource.cacheTemplate(templateToCache: remoteActivity);
+        localDataSource.cacheTemplate(templateToCache: remoteTemplate);
 
-        return Right(remoteActivity);
+        return Right(remoteTemplate);
       } on ServerException {
         return Left(ServerFailure(errorMessage: 'This is a server exception'));
       }
     } else {
       try {
-        TemplateModel localActivity = await localDataSource.getLastTemplate();
-        return Right(localActivity);
+        TemplateModel localTemplate = await localDataSource.getLastTemplate();
+        return Right(localTemplate);
       } on CacheException {
         return Left(CacheFailure(errorMessage: 'This is a cache exception'));
       }
