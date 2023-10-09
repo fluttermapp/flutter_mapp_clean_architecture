@@ -7,12 +7,20 @@ class PokemonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          PokemonWidget(),
-          SearchPokemonWidget(),
-        ],
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color(0xff93A5CF),
+            Color(0xffE4EfE9)
+          ])
+        ),
+        child: const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            PokemonWidget(),
+            SearchPokemonWidget(),
+          ],
+        ),
       ),
     );
   }

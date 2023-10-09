@@ -1,6 +1,7 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon_avatar/presentation/providers/avatar_image_provider.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class SearchPokemonWidget extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: 20.0,
         right: 20.0,
-        bottom: 40.0,
+        bottom: 10.0,
       ),
       child: Column(
         children: [
@@ -31,19 +32,6 @@ class SearchPokemonWidget extends StatelessWidget {
             spacing: 10.0,
             runSpacing: 5.0,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  selectedPokemonItem.changeNumber(
-                    newNumber: Random().nextInt(maxPokemonId),
-                  );
-                },
-                child: const Text(
-                  'Random',
-                  style: TextStyle(
-                    fontSize: 22.0,
-                  ),
-                ),
-              ),
               ElevatedButton(
                 onPressed: () => showCupertinoModalPopup(
                   context: context,
@@ -104,23 +92,33 @@ class SearchPokemonWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  selectedPokemonItem.changeNumber(
+                    newNumber: Random().nextInt(maxPokemonId),
+                  );
+                },
+                child: const Icon(Icons.refresh)
+              )
             ],
           ),
           CustomElevatedButtonWidget(
-            buttonColor: Colors.orangeAccent,
+            buttonColor: const Color(0xff93A5CF),
             textColor: Colors.white,
             iconColor: Colors.white,
             callback: () async {
+              AvatarImageProvider avatarImageProvider = Provider.of<AvatarImageProvider>(context, listen: false);
               Provider.of<PokemonProvider>(context, listen: false)
                   .eitherFailureOrPokemon(
                 value: (selectedPokemonItem.number + 1).toString(),
+                avatarImageProvider: avatarImageProvider
               );
               if (await NetworkInfoImpl(DataConnectionChecker()).isConnected ==
                   false) {
                 scaffoldMessengerState.clearSnackBars();
                 scaffoldMessengerState.showSnackBar(
                   const SnackBar(
-                    backgroundColor: Colors.orange,
+                    backgroundColor: Color(0xff93A5CF),
                     content: Text('No connection'),
                     showCloseIcon: true,
                   ),

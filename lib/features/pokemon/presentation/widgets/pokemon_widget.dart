@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/errors/failure.dart';
-import 'pokemon_image_widget.dart';
+import '../../../pokemon_avatar/presentation/widgets/pokemon_image_widget.dart';
 import '../../business/entities/pokemon_entity.dart';
 import '../providers/pokemon_provider.dart';
 
@@ -16,12 +16,30 @@ class PokemonWidget extends StatelessWidget {
     if (pokemon != null) {
       widget = PokemonImageWidget(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            const Padding(
+              padding:
+                  EdgeInsets.only(left: 40, right: 20, top: kToolbarHeight),
+              child: Text(
+                'POKKE WORLD',
+                style: TextStyle(
+                  fontSize: 30,
+                  shadows: <Shadow>[
+                    Shadow(
+                      blurRadius: 20.0,
+                      color: Colors.pink,
+                    ),
+                  ],
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 10, bottom: 20),
                 child: SingleChildScrollView(
                   child: FittedBox(
                     child: Text(
@@ -52,13 +70,26 @@ class PokemonWidget extends StatelessWidget {
                 runSpacing: 5,
                 children: List.generate(
                   pokemon.types.length,
-                  (index) => Chip(
-                    backgroundColor: Colors.white,
-                    label: Text(
-                      pokemon.types.elementAt(index).type.name.toUpperCase(),
-                      style: const TextStyle(fontSize: 20),
+                  (index) => 
+                  Text(
+                    '#${pokemon.types.elementAt(index).type.name}',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.black38,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
+                  // Chip(
+                  //   label: Text(
+                  //     pokemon.types.elementAt(index).type.name.toUpperCase(),
+                  //     style: const TextStyle(
+                  //       fontSize: 20,
+                  //       color: Colors.blueGrey,
+                  //       fontWeight: FontWeight.w900,
+                  //     ),
+                  //   ),
+                  //   side: const BorderSide(color: Colors.transparent),
+                  // ),
                 ),
               ),
             ),

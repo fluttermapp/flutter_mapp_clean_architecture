@@ -23,7 +23,7 @@ class CustomElevatedButtonWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            minimumSize: const Size(double.infinity, 70)),
+            minimumSize: const Size(70, 70)),
         onPressed: callback,
         child: Text(
           'Search',

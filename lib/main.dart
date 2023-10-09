@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon_avatar/presentation/providers/avatar_image_provider.dart';
 import 'package:provider/provider.dart';
 import 'features/pokemon/presentation/providers/pokemon_provider.dart';
 import 'features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
@@ -25,10 +26,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => SelectedPokemonItemProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => AvatarImageProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Poke Mapp',
+        title: 'Poke Jungle',
         theme: ThemeData(
             useMaterial3: true,
             primarySwatch: Colors.blue,
@@ -59,9 +63,11 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     SelectedPokemonItemProvider selectedPokemonItem = Provider.of<SelectedPokemonItemProvider>(context, listen: false);
+    AvatarImageProvider avatarImageProvider = Provider.of<AvatarImageProvider>(context, listen: false);
 
     Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
       value: (selectedPokemonItem.number + 1).toString(),
+      avatarImageProvider: avatarImageProvider
     );
     super.initState();
   }
