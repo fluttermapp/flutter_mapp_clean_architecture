@@ -1,6 +1,7 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon%20image/presentation/providers/pokemon_image_provider.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,7 @@ class SearchPokemonWidget extends StatelessWidget {
         ScaffoldMessenger.of(context);
     SelectedPokemonItemProvider selectedPokemonItem =
         Provider.of<SelectedPokemonItemProvider>(context);
+    final pokemonImageProvider = context.watch<PokemonImageProvider>();
     return Padding(
       padding: const EdgeInsets.only(
         left: 20.0,
@@ -114,6 +116,7 @@ class SearchPokemonWidget extends StatelessWidget {
               Provider.of<PokemonProvider>(context, listen: false)
                   .eitherFailureOrPokemon(
                 value: (selectedPokemonItem.number + 1).toString(),
+                pokemonImageProvider: pokemonImageProvider,
               );
               if (await NetworkInfoImpl(DataConnectionChecker()).isConnected ==
                   false) {

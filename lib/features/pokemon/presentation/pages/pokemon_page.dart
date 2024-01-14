@@ -5,11 +5,11 @@ class PokemonPage extends StatelessWidget {
   const PokemonPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children:  [
           PokemonWidget(),
           SearchPokemonWidget(),
         ],
