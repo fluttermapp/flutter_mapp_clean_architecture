@@ -11,7 +11,7 @@ List<Widget> pages = const [
 ];
 
 class Skeleton extends StatelessWidget {
-  const Skeleton({Key? key}) : super(key: key);
+  const Skeleton({super.key});
 
   @override
   Widget build(BuildContext context) {

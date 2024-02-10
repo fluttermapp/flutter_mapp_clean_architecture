@@ -4,16 +4,11 @@ import '../../business/entities/pokemon_entity.dart';
 
 class PokemonModel extends PokemonEntity {
   const PokemonModel({
-    required String name,
-    required int id,
-    required SpritesModel sprites,
-    required List<TypesModel> types,
-  }) : super(
-          name: name,
-          id: id,
-          sprites: sprites,
-          types: types,
-        );
+    required super.name,
+    required super.id,
+    required SpritesModel super.sprites,
+    required List<TypesModel> super.types,
+  });
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) {
     return PokemonModel(

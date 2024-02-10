@@ -1,15 +1,12 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../../core/errors/failure.dart';
 
 class PokemonImageWidget extends StatelessWidget {
   const PokemonImageWidget({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
   final Widget child;
 
   @override

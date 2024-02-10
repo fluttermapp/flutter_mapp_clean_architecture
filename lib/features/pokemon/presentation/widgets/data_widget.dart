@@ -6,7 +6,7 @@ import '../../business/entities/pokemon_entity.dart';
 import '../providers/pokemon_provider.dart';
 
 class DataWidget extends StatelessWidget {
-  const DataWidget({Key? key}) : super(key: key);
+  const DataWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

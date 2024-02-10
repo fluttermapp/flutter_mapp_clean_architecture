@@ -11,7 +11,7 @@ import '../providers/selected_pokemon_item_provider.dart';
 import 'custom_elevated_button_widget.dart';
 
 class SearchPokemonWidget extends StatelessWidget {
-  const SearchPokemonWidget({Key? key}) : super(key: key);
+  const SearchPokemonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

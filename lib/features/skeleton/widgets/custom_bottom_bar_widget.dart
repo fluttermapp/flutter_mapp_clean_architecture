@@ -4,7 +4,7 @@ import 'custom_bottom_bar_icon_widget.dart';
 import '../providers/selected_page_provider.dart';
 
 class CustomBottomBarWidget extends StatelessWidget {
-  const CustomBottomBarWidget({Key? key}) : super(key: key);
+  const CustomBottomBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

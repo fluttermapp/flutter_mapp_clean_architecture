@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../widgets/pokemon_widgets.dart';
 
 class PokemonPage extends StatelessWidget {
-  const PokemonPage({Key? key}) : super(key: key);
+  const PokemonPage({super.key});
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           PokemonWidget(),
           SearchPokemonWidget(),
         ],
