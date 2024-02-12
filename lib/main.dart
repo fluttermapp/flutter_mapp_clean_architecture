@@ -27,9 +27,6 @@ class MyApp extends StatelessWidget {
         provider.ChangeNotifierProvider(
           create: (context) => PokemonProvider(),
         ),
-        provider.ChangeNotifierProvider(
-          create: (context) => SelectedPokemonItemProvider(),
-        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -53,20 +50,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends ConsumerState<Home> {
   @override
   void initState() {
-    SelectedPokemonItemProvider selectedPokemonItem = provider.Provider.of<SelectedPokemonItemProvider>(context, listen: false);
+    int selectedPokemonItem = ref.read(selectedPokemonItemProvider);
 
     provider.Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
-      value: (selectedPokemonItem.number + 1).toString(),
+      value: (selectedPokemonItem + 1).toString(),
     );
     super.initState();
   }
