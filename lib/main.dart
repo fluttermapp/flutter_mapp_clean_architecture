@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart' as provider;
 import 'features/pokemon/presentation/providers/pokemon_provider.dart';
 import 'features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
 import 'features/skeleton/providers/selected_page_provider.dart';
 import 'features/skeleton/skeleton.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,15 +19,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return provider.MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        provider.ChangeNotifierProvider(
           create: (context) => SelectedPageProvider(),
         ),
-        ChangeNotifierProvider(
+        provider.ChangeNotifierProvider(
           create: (context) => PokemonProvider(),
         ),
-        ChangeNotifierProvider(
+        provider.ChangeNotifierProvider(
           create: (context) => SelectedPokemonItemProvider(),
         ),
       ],
@@ -58,9 +63,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
-    SelectedPokemonItemProvider selectedPokemonItem = Provider.of<SelectedPokemonItemProvider>(context, listen: false);
+    SelectedPokemonItemProvider selectedPokemonItem = provider.Provider.of<SelectedPokemonItemProvider>(context, listen: false);
 
-    Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
+    provider.Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
       value: (selectedPokemonItem.number + 1).toString(),
     );
     super.initState();
