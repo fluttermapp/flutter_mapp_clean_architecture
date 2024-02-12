@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-
 import '../../../../../core/connection/network_info.dart';
 import '../../../../../core/errors/exceptions.dart';
 import '../../../../../core/errors/failure.dart';
@@ -23,25 +21,35 @@ class PokemonRepositoryImpl implements PokemonRepository {
   });
 
   @override
-  Future<Either<Failure, PokemonModel>> getPokemon(
-      {required PokemonParams params}) async {
+  Future<({Failure? failure, PokemonModel? pokemon})> getPokemon({required PokemonParams params}) async {
     if (await networkInfo.isConnected!) {
       try {
-        final remotePokemon =
-            await remoteDataSource.getPokemon(params: params);
+        final remotePokemon = await remoteDataSource.getPokemon(params: params);
 
         localDataSource.cachePokemon(remotePokemon);
 
-        return Right(remotePokemon);
+        return (
+          failure: null,
+          pokemon: remotePokemon,
+        );
       } on ServerException {
-        return Left(ServerFailure(errorMessage: 'This is a server exception'));
+        return (
+          failure: ServerFailure(errorMessage: 'This is a server exception'),
+          pokemon: null,
+        );
       }
     } else {
       try {
         final localPokemon = await localDataSource.getLastPokemon();
-        return Right(localPokemon);
+        return (
+          failure: null,
+          pokemon: localPokemon,
+        );
       } on CacheException {
-        return Left(CacheFailure(errorMessage: 'No local data found'));
+        return (
+          failure: CacheFailure(errorMessage: 'No local data found'),
+          pokemon: null,
+        );
       }
     }
   }

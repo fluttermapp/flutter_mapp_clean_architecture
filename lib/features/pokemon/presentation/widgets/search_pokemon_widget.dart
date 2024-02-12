@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math';
-import 'package:provider/provider.dart' as provider;
 
 import 'package:flutter_mapp_clean_architecture/core/connection/network_info.dart';
 import 'package:flutter_mapp_clean_architecture/core/constants/constants.dart';
@@ -109,7 +108,7 @@ class SearchPokemonWidget extends ConsumerWidget {
             textColor: Colors.white,
             iconColor: Colors.white,
             callback: () async {
-              provider.Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
+              ref.read(pokemonProvider.notifier).eitherFailureOrPokemon(
                 value: (selectedPokemonItem + 1).toString(),
               );
               if (await NetworkInfoImpl(DataConnectionChecker()).isConnected == false) {

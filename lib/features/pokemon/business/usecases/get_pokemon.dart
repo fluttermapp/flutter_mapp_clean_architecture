@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../core/params/params.dart';
 import '../entities/pokemon_entity.dart';
@@ -9,7 +8,7 @@ class GetPokemon {
 
   GetPokemon(this.repository);
 
-  Future<Either<Failure, PokemonEntity>> call({required PokemonParams params}) async {
+  Future<({Failure? failure, PokemonEntity? pokemon})> call({required PokemonParams params}) async {
     return await repository.getPokemon(params: params);
   }
 }

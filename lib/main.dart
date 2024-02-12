@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart' as provider;
 import 'features/pokemon/presentation/providers/pokemon_provider.dart';
 import 'features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
 import 'features/skeleton/skeleton.dart';
@@ -18,30 +17,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return provider.MultiProvider(
-      providers: [
-        provider.ChangeNotifierProvider(
-          create: (context) => PokemonProvider(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Poke Mapp',
-        theme: ThemeData(
-            useMaterial3: true,
-            primarySwatch: Colors.blue,
-            appBarTheme: const AppBarTheme(
-              titleTextStyle: TextStyle(
-                color: Colors.black87,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            iconTheme: const IconThemeData(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Poke Mapp',
+      theme: ThemeData(
+          useMaterial3: true,
+          primarySwatch: Colors.blue,
+          appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(
               color: Colors.black87,
-            )),
-        home: const Home(),
-      ),
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          iconTheme: const IconThemeData(
+            color: Colors.black87,
+          )),
+      home: const Home(),
     );
   }
 }
@@ -57,10 +49,7 @@ class HomeState extends ConsumerState<Home> {
   @override
   void initState() {
     int selectedPokemonItem = ref.read(selectedPokemonItemProvider);
-
-    provider.Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
-      value: (selectedPokemonItem + 1).toString(),
-    );
+    ref.read(pokemonProvider.notifier).eitherFailureOrPokemon(value: (selectedPokemonItem + 1).toString());
     super.initState();
   }
 

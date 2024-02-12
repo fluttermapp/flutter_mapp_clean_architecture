@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-
 import '../../../../../core/connection/network_info.dart';
 import '../../../../../core/errors/exceptions.dart';
 import '../../../../../core/errors/failure.dart';
@@ -21,25 +19,23 @@ class TemplateRepositoryImpl implements TemplateRepository {
   });
 
   @override
-  Future<Either<Failure, TemplateModel>> getTemplate(
-      {required TemplateParams templateParams}) async {
+  Future<({Failure? failure, TemplateModel? template})> getTemplate({required TemplateParams templateParams}) async {
     if (await networkInfo.isConnected!) {
       try {
-        TemplateModel remoteTemplate =
-            await remoteDataSource.getTemplate(templateParams: templateParams);
+        TemplateModel remoteTemplate = await remoteDataSource.getTemplate(templateParams: templateParams);
 
         localDataSource.cacheTemplate(templateToCache: remoteTemplate);
 
-        return Right(remoteTemplate);
+        return (failure: null, template: remoteTemplate);
       } on ServerException {
-        return Left(ServerFailure(errorMessage: 'This is a server exception'));
+        return (failure: ServerFailure(errorMessage: 'This is a server exception'), template: null);
       }
     } else {
       try {
         TemplateModel localTemplate = await localDataSource.getLastTemplate();
-        return Right(localTemplate);
+        return (failure: null, template: localTemplate);
       } on CacheException {
-        return Left(CacheFailure(errorMessage: 'This is a cache exception'));
+        return (failure: CacheFailure(errorMessage: 'This is a cache exception'), template: null);
       }
     }
   }

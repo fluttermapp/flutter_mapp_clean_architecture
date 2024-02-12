@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../business/entities/pokemon_entity.dart';
 import '../providers/pokemon_provider.dart';
 
-class DataWidget extends StatelessWidget {
+class DataWidget extends ConsumerWidget {
   const DataWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    PokemonEntity? pokemon = Provider.of<PokemonProvider>(context).pokemon;
-    Failure? failure = Provider.of<PokemonProvider>(context).failure;
+  Widget build(BuildContext context, WidgetRef ref) {
+    PokemonEntity? pokemon = ref.watch(pokemonProvider).pokemon;
+    Failure? failure = ref.watch(pokemonProvider).failure;
     late Widget widget;
     if (pokemon != null) {
       widget = SingleChildScrollView(
