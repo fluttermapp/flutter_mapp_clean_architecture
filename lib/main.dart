@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart' as provider;
 import 'features/pokemon/presentation/providers/pokemon_provider.dart';
 import 'features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
-import 'features/skeleton/providers/selected_page_provider.dart';
 import 'features/skeleton/skeleton.dart';
 
 void main() {
@@ -21,9 +20,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return provider.MultiProvider(
       providers: [
-        provider.ChangeNotifierProvider(
-          create: (context) => SelectedPageProvider(),
-        ),
         provider.ChangeNotifierProvider(
           create: (context) => PokemonProvider(),
         ),
