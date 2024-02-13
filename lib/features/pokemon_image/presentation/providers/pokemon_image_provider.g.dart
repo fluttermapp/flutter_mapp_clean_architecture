@@ -6,7 +6,7 @@ part of 'pokemon_image_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pokemonImageHash() => r'28bf57a1e6f948fb5b3026cece0d6d3b85077025';
+String _$pokemonImageHash() => r'bc884a35706c2d0274bc8666048ba96f89db9ab7';
 
 /// See also [PokemonImage].
 @ProviderFor(PokemonImage)

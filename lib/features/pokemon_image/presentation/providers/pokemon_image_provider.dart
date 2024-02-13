@@ -1,6 +1,9 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_mapp_clean_architecture/core/constants/constants.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon/business/entities/pokemon_entity.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon/presentation/providers/pokemon_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,10 +41,18 @@ class PokemonImage extends _$PokemonImage {
         DataConnectionChecker(),
       ),
     );
+    
+    PokemonEntity? pokemonEntity = ref.read(pokemonProvider.notifier).pokemon;
 
-    if (pokemonImage != null) {
+    if (pokemonEntity != null) {
+      String imageUrl = (isShiny)
+          ? pokemonEntity.sprites.other.officialArtwork.frontShiny
+          : pokemonEntity.sprites.other.officialArtwork.frontDefault;
       final failureOrPokemonImage = await GetPokemonImage(pokemonImageRepository: repository).call(
-        pokemonImageParams: PokemonImageParams(path: pokemonImage!.path),
+        pokemonImageParams: PokemonImageParams(
+          name: pokemonEntity.name,
+          imageUrl: imageUrl,
+        ),
       );
       state = failureOrPokemonImage;
     }

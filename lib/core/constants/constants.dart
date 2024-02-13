@@ -1,5 +1,6 @@
 String kTemplate = 'template';
 String kPath = 'path';
+bool isShiny = true;
 
 String kName = 'name';
 String kId = 'id';
