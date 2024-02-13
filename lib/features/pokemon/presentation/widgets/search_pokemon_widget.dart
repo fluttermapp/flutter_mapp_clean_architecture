@@ -34,6 +34,8 @@ class SearchPokemonWidget extends ConsumerWidget {
                   ref.read(selectedPokemonItemProvider.notifier).changeNumber(
                         newNumber: Random().nextInt(maxPokemonId),
                       );
+                  final int newNumber = ref.read(selectedPokemonItemProvider) +1;
+                  ref.read(pokemonProvider.notifier).eitherFailureOrPokemon(value: newNumber.toString());
                 },
                 child: const Text(
                   'Random',
@@ -109,8 +111,8 @@ class SearchPokemonWidget extends ConsumerWidget {
             iconColor: Colors.white,
             callback: () async {
               ref.read(pokemonProvider.notifier).eitherFailureOrPokemon(
-                value: (selectedPokemonItem + 1).toString(),
-              );
+                    value: (selectedPokemonItem + 1).toString(),
+                  );
               if (await NetworkInfoImpl(DataConnectionChecker()).isConnected == false) {
                 scaffoldMessengerState.clearSnackBars();
                 scaffoldMessengerState.showSnackBar(

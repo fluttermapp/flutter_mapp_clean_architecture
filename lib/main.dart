@@ -48,9 +48,10 @@ class Home extends ConsumerStatefulWidget {
 class HomeState extends ConsumerState<Home> {
   @override
   void initState() {
+    super.initState();
+    
     int selectedPokemonItem = ref.read(selectedPokemonItemProvider);
     ref.read(pokemonProvider.notifier).eitherFailureOrPokemon(value: (selectedPokemonItem + 1).toString());
-    super.initState();
   }
 
   @override

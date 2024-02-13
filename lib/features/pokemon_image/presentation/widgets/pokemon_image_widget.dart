@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mapp_clean_architecture/core/errors/failure.dart';
 import 'package:flutter_mapp_clean_architecture/features/pokemon_image/business/entities/pokemon_image_entity.dart';
@@ -13,7 +15,7 @@ class PokemonImageWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PokemonImageEntity? pokemonImageEntity = ref.watch(pokemonImageProvider.notifier).pokemonImage;
+    PokemonImageEntity? pokemonImageEntity = ref.watch(pokemonImageProvider).pokemonImage;
     Failure? failure = ref.watch(pokemonImageProvider.notifier).failure;
     late Widget widget;
     if (pokemonImageEntity != null) {
@@ -23,8 +25,8 @@ class PokemonImageWidget extends ConsumerWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: Colors.orange,
-            image: const DecorationImage(
-              image: AssetImage('assets/images/mapp.png'),
+            image: DecorationImage(
+              image: FileImage(File(pokemonImageEntity.path)),
             ),
           ),
           child: child,
@@ -32,17 +34,19 @@ class PokemonImageWidget extends ConsumerWidget {
       );
     } else if (failure != null) {
       widget = Expanded(
-          child: Center(
-        child: Text(
-          failure.errorMessage,
-          style: const TextStyle(fontSize: 20.0),
+        child: Center(
+          child: Text(
+            failure.errorMessage,
+            style: const TextStyle(fontSize: 20.0),
+          ),
         ),
-      ));
+      );
     } else {
       widget = const Expanded(
-          child: Center(
-        child: CircularProgressIndicator.adaptive(),
-      ));
+        child: Center(
+          child: CircularProgressIndicator.adaptive(),
+        ),
+      );
     }
     return widget;
   }

@@ -1,5 +1,6 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon_image/presentation/providers/pokemon_image_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,6 +37,8 @@ class Pokemon extends _$Pokemon {
     final failureOrPokemon = await GetPokemon(repository).call(
       params: PokemonParams(id: value),
     );
+
+    await ref.read(pokemonImageProvider.notifier).eitherFailureOrPokemonImage(pokemonEntity: failureOrPokemon.pokemon);
 
     state = failureOrPokemon;
   }
