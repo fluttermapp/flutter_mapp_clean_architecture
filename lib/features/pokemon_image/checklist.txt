@@ -1,0 +1,6 @@
+1. Convert Template into Feature.
+2. Flow
+    - Provider (Add required params)
+    - Pages (Widgets)
+    - Datasources remote
+    - Provider uses

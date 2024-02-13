@@ -8,3 +8,11 @@ class PokemonParams {
     required this.id,
   });
 }
+
+class PokemonImageParams {
+  final String path;
+  const PokemonImageParams({
+    required this.path,
+  });
+}
+
