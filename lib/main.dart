@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'features/pokemon/presentation/providers/pokemon_provider.dart';
 import 'features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
-import 'features/skeleton/providers/selected_page_provider.dart';
 import 'features/skeleton/skeleton.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,56 +17,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => SelectedPageProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => PokemonProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SelectedPokemonItemProvider(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Poke Mapp',
-        theme: ThemeData(
-            useMaterial3: true,
-            primarySwatch: Colors.blue,
-            appBarTheme: const AppBarTheme(
-              titleTextStyle: TextStyle(
-                color: Colors.black87,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            iconTheme: const IconThemeData(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Poke Mapp',
+      theme: ThemeData(
+          useMaterial3: true,
+          primarySwatch: Colors.blue,
+          appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(
               color: Colors.black87,
-            )),
-        home: const Home(),
-      ),
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          iconTheme: const IconThemeData(
+            color: Colors.black87,
+          )),
+      home: const Home(),
     );
   }
 }
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Home extends ConsumerStatefulWidget {
+  const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends ConsumerState<Home> {
   @override
   void initState() {
-    SelectedPokemonItemProvider selectedPokemonItem = Provider.of<SelectedPokemonItemProvider>(context, listen: false);
-
-    Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
-      value: (selectedPokemonItem.number + 1).toString(),
-    );
     super.initState();
+    
+    int selectedPokemonItem = ref.read(selectedPokemonItemProvider);
+    ref.read(pokemonProvider.notifier).eitherFailureOrPokemon(value: (selectedPokemonItem + 1).toString());
   }
 
   @override

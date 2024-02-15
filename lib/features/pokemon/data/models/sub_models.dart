@@ -40,12 +40,9 @@ class OtherModel extends OtherEntity {
 
 class OfficialArtworkModel extends OfficialArtworkEntity {
   const OfficialArtworkModel({
-    required String frontDefault,
-    required String frontShiny,
-  }) : super(
-          frontDefault: frontDefault,
-          frontShiny: frontShiny,
-        );
+    required super.frontDefault,
+    required super.frontShiny,
+  });
 
   static OfficialArtworkModel fromJson(Map<String, dynamic> json) {
     return OfficialArtworkModel(
@@ -89,8 +86,8 @@ class TypesModel extends TypesEntity {
 
 class TypeModel extends TypeEntity {
   const TypeModel({
-    required String name,
-  }) : super(name: name);
+    required super.name,
+  });
 
   static TypeModel fromJson(Map<String, dynamic> json) {
     return TypeModel(

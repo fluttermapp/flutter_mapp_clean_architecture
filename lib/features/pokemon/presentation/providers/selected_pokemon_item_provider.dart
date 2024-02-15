@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class SelectedPokemonItemProvider extends ChangeNotifier {
-  int number;
+part 'selected_pokemon_item_provider.g.dart';
 
-  SelectedPokemonItemProvider({
-    this.number = 0,
-  });
+@riverpod
+class SelectedPokemonItem extends _$SelectedPokemonItem {
+  @override
+  int build() => 0;
 
   void changeNumber({required int newNumber}) {
-    number = newNumber;
-    notifyListeners();
+    state = newNumber;
   }
 }

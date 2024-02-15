@@ -1,24 +1,22 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math';
-import 'package:provider/provider.dart';
 
-import '../../../../../core/connection/network_info.dart';
-import '../../../../../core/constants/constants.dart';
-import '../providers/pokemon_provider.dart';
-import '../providers/selected_pokemon_item_provider.dart';
+import 'package:flutter_mapp_clean_architecture/core/connection/network_info.dart';
+import 'package:flutter_mapp_clean_architecture/core/constants/constants.dart';
+import 'package:flutter_mapp_clean_architecture/features/pokemon/presentation/providers/providers.dart';
+
 import 'custom_elevated_button_widget.dart';
 
-class SearchPokemonWidget extends StatelessWidget {
-  const SearchPokemonWidget({Key? key}) : super(key: key);
+class SearchPokemonWidget extends ConsumerWidget {
+  const SearchPokemonWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    ScaffoldMessengerState scaffoldMessengerState =
-        ScaffoldMessenger.of(context);
-    SelectedPokemonItemProvider selectedPokemonItem =
-        Provider.of<SelectedPokemonItemProvider>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    ScaffoldMessengerState scaffoldMessengerState = ScaffoldMessenger.of(context);
+    final int selectedPokemonItem = ref.watch(selectedPokemonItemProvider);
     return Padding(
       padding: const EdgeInsets.only(
         left: 20.0,
@@ -33,9 +31,11 @@ class SearchPokemonWidget extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  selectedPokemonItem.changeNumber(
-                    newNumber: Random().nextInt(maxPokemonId),
-                  );
+                  ref.read(selectedPokemonItemProvider.notifier).changeNumber(
+                        newNumber: Random().nextInt(maxPokemonId),
+                      );
+                  final int newNumber = ref.read(selectedPokemonItemProvider) +1;
+                  ref.read(pokemonProvider.notifier).eitherFailureOrPokemon(value: newNumber.toString());
                 },
                 child: const Text(
                   'Random',
@@ -53,8 +53,7 @@ class SearchPokemonWidget extends StatelessWidget {
                     margin: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom,
                     ),
-                    color:
-                        CupertinoColors.systemBackground.resolveFrom(context),
+                    color: CupertinoColors.systemBackground.resolveFrom(context),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -73,12 +72,12 @@ class SearchPokemonWidget extends StatelessWidget {
                               useMagnifier: true,
                               itemExtent: 32.0,
                               scrollController: FixedExtentScrollController(
-                                initialItem: selectedPokemonItem.number,
+                                initialItem: selectedPokemonItem,
                               ),
                               onSelectedItemChanged: (int selectedItem) {
-                                selectedPokemonItem.changeNumber(
-                                  newNumber: selectedItem,
-                                );
+                                ref.read(selectedPokemonItemProvider.notifier).changeNumber(
+                                      newNumber: selectedItem,
+                                    );
                               },
                               children: List<Widget>.generate(
                                 maxPokemonId,
@@ -98,7 +97,7 @@ class SearchPokemonWidget extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  '# ${selectedPokemonItem.number + 1}',
+                  '# ${selectedPokemonItem + 1}',
                   style: const TextStyle(
                     fontSize: 22.0,
                   ),
@@ -111,12 +110,10 @@ class SearchPokemonWidget extends StatelessWidget {
             textColor: Colors.white,
             iconColor: Colors.white,
             callback: () async {
-              Provider.of<PokemonProvider>(context, listen: false)
-                  .eitherFailureOrPokemon(
-                value: (selectedPokemonItem.number + 1).toString(),
-              );
-              if (await NetworkInfoImpl(DataConnectionChecker()).isConnected ==
-                  false) {
+              ref.read(pokemonProvider.notifier).eitherFailureOrPokemon(
+                    value: (selectedPokemonItem + 1).toString(),
+                  );
+              if (await NetworkInfoImpl(DataConnectionChecker()).isConnected == false) {
                 scaffoldMessengerState.clearSnackBars();
                 scaffoldMessengerState.showSnackBar(
                   const SnackBar(

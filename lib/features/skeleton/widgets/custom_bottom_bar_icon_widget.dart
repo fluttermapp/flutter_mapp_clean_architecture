@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class CustomBottomBarIconWidget extends StatelessWidget {
   const CustomBottomBarIconWidget({
-    Key? key,
+    super.key,
     required this.callback,
     required this.iconDataSelected,
     required this.iconDataUnselected,
     required this.isSelected,
-  }) : super(key: key);
+  });
 
   final VoidCallback callback;
   final bool isSelected;
